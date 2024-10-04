@@ -1,0 +1,75 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Column layout to add filter UI */
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f4f9;  /* Subtle neutral background */
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.line {
+    stroke-width: 2px;
+    stroke: gray;
+}
+
+.highlighted-tick {
+    fill: #5D3FD3;  /* Purple color for highlighted states */
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.normal-tick {
+    fill: black;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.chart-axis-label {
+    text-anchor: middle;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+    stroke: black;
+}
+
+.legend-circle {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.legend-text {
+    font-size: 14px;
+}
+
+.filter-container {
+    margin-bottom: 20px; /* Add margin to separate filter from the chart */
+}
+
+.filter-label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.filter-option {
+    margin-right: 10px;
+}
