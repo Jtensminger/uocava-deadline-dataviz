@@ -15,8 +15,9 @@ const highlightedStates = [
 
 // Initial filtering state
 let filters = {
+    all: true,
     post: true,
-    postElectronic: true
+    postElectronic: true 
 };
 
 // Load data from external CSV file and parse it
@@ -116,7 +117,7 @@ d3.csv('data.csv', function (d) {
     function applyFilters() {
         // Filter the data based on selected return methods
         const filteredData = data.filter(d => {
-            if (filters.post && filters.postElectronic) {
+            if (filters.all) {
                 return true;
             } else if (filters.post) {
                 return d.return_methods === 'Post';
@@ -232,15 +233,31 @@ d3.csv('data.csv', function (d) {
     // Initial chart rendering
     applyFilters();
 
-    // Event listeners for filter checkboxes
+    // Event listeners for filter radio buttons
     d3.select('#post').on('change', function () {
-        filters.post = this.checked;
-        applyFilters();  // Re-apply filters whenever user toggles the checkbox
+        if (this.checked) {
+            filters.all = false;
+            filters.post = true;
+            filters.postElectronic = false;
+        }
+        applyFilters();  // Re-apply filters whenever user changes the selection
     });
 
     d3.select('#postElectronic').on('change', function () {
-        filters.postElectronic = this.checked;
-        applyFilters();  // Re-apply filters whenever user toggles the checkbox
+        if (this.checked) {
+            filters.all = false;
+            filters.post = false;
+            filters.postElectronic = true;
+        }
+        applyFilters();  // Re-apply filters whenever user changes the selection
+    });
+    d3.select('#all').on('change', function () {
+        if (this.checked) {
+            filters.all = true;
+            filters.post = false;
+            filters.postElectronic = false;
+        }
+        applyFilters();  // Re-apply filters whenever user changes the selection
     });
 }).catch(error => {
     console.error("Error loading the CSV data: ", error);
